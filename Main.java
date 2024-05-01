@@ -21,6 +21,7 @@ public class BackendServer {
             String requestMethod = exchange.getRequestMethod();
             if (requestMethod.equalsIgnoreCase("GET")) {
                 String uri = exchange.getRequestURI().toString();
+                System.out.println("Received request: " + uri); // Log the received URI
                 // You can implement different actions based on the URI here
                 if (uri.equals("/ace")) {
                     response = "You pressed the Ace button";
