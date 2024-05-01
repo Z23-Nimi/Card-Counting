@@ -4,6 +4,37 @@ import com.sun.net.httpserver.HttpExchange;
 import java.io.IOException;
 import java.io.OutputStream;
 
+public class Main {
+    // Variables for each type of card
+    private static int ace = 4;
+    private static int two = 4;
+    private static int three = 4;
+    private static int four = 4;
+    private static int five = 4;
+    private static int six = 4;
+    private static int seven = 4;
+    private static int eight = 4;
+    private static int nine = 4;
+    private static int tensJacksQueensKings = 16;
+    private static int joker = 4;
+
+    // Method to reset all card values back to their original value (4)
+    private static void resetCards() {
+        ace = 4;
+        two = 4;
+        three = 4;
+        four = 4;
+        five = 4;
+        six = 4;
+        seven = 4;
+        eight = 4;
+        nine = 4;
+        tensJacksQueensKings = 16;
+        joker = 4;
+    }
+}
+
+
 public class BackendServer {
     public static void main(String[] args) throws Exception {
         int port = 8000; // You can change the port as needed
