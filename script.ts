@@ -1,28 +1,62 @@
-let count = 0; // Initialize count
+const cardCounts: { [key: string]: number } = {
+  ace: 4,
+  two: 4,
+  three: 4,
+  four: 4,
+  five: 4,
+  six: 4,
+  seven: 4,
+  eight: 4,
+  nine: 4,
+  ten: 4,
+  jack: 4,
+  queen: 4,
+  king: 4,
+};
 
-// Function to handle button click representing a dealt card
-function handleCardClick(value: number) {
-  // Update count based on the value of the card
-  count += value;
-  updateUI(); // Update the UI with the new count
-}
-
-// Function to update the UI with the current count
-function updateUI() {
-  const countDisplay = document.getElementById('count');
-  if (countDisplay) {
-    countDisplay.textContent = `Count: ${count}`;
+// Function to handle click on a card
+function handleCardClick(cardId: string) {
+  if (cardCounts.hasOwnProperty(cardId)) {
+    // Decrement count for the clicked card
+    cardCounts[cardId]--;
+    // Update the UI with the new count for the clicked card
+    updateCount(cardId);
+    // Update the total count
+    updateTotalCount();
   }
 }
 
-// Attach event listener to the card button
-const cardButton = document.getElementById('cardButton');
-if (cardButton) {
-  cardButton.addEventListener('click', () => {
-    const value = parseInt(cardButton.dataset.value || '0', 10);
-    handleCardClick(value);
-  });
+// Function to update the count for a specific card
+function updateCount(cardId: string) {
+  const countElement = document.querySelector(`#${cardId} .count`);
+  if (countElement) {
+    countElement.textContent = `Count: ${cardCounts[cardId]}`;
+  }
 }
 
+// Function to update the total count
+function updateTotalCount() {
+  const totalCountElement = document.getElementById('total');
+  if (totalCountElement) {
+    let totalCount = 0;
+    for (const card in cardCounts) {
+      if (cardCounts.hasOwnProperty(card)) {
+        totalCount += cardCounts[card];
+      }
+    }
+    totalCountElement.textContent = `Total: ${totalCount}`;
+  }
+}
+
+// Attach event listeners to each card
+const cards = document.querySelectorAll('.card');
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    const cardId = card.id;
+    handleCardClick(cardId);
+  });
+});
+
 // Initial UI update
-updateUI();
+updateTotalCount();
+
