@@ -44,9 +44,9 @@ function updateTotalCount() {
         totalCountElement.textContent = "Total: ".concat(totalCount);
     }
 }
-// Attach event listeners to each standard card
-var standardCards = document.querySelectorAll('#standardCards .card');
-standardCards.forEach(function (card) {
+// Attach event listeners to each card
+var cards = document.querySelectorAll('.card');
+cards.forEach(function (card) {
     card.addEventListener('click', function () {
         var cardId = card.id;
         handleCardClick(cardId);
