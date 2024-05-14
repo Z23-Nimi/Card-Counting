@@ -48,39 +48,14 @@ function updateTotalCount() {
   }
 }
 
-// Attach event listeners to each standard card
-const standardCards = document.querySelectorAll('#standardCards .card');
-standardCards.forEach(card => {
+// Attach event listeners to each card
+const cards = document.querySelectorAll('.card');
+cards.forEach(card => {
   card.addEventListener('click', () => {
     const cardId = card.id;
     handleCardClick(cardId);
   });
 });
 
-// Function to reset the hand
-function resetHand() {
-  // Reset counts for all standard cards
-  for (const card in cardCounts) {
-    if (cardCounts.hasOwnProperty(card)) {
-      cardCounts[card] = 4; // Reset count to 4 for each card
-      updateCount(card); // Update UI with reset count
-    }
-  }
-  // Update total count
-  updateTotalCount();
-  // Clear user hand UI
-  const userHandElement = document.getElementById('userHand');
-  if (userHandElement) {
-    userHandElement.innerHTML = ''; // Clear inner HTML to remove user hand cards
-  }
-}
-
-// Attach event listener to the reset button
-const resetButton = document.getElementById('resetButton');
-if (resetButton) {
-  resetButton.addEventListener('click', resetHand);
-}
-
 // Initial UI update
 updateTotalCount();
-
