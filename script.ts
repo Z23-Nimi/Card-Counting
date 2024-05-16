@@ -14,13 +14,19 @@ const cardCounts: { [key: string]: number } = {
   king: 4,
 };
 
+const userHand: string[] = [];
+
 // Function to handle click on a card
 function handleCardClick(cardId: string) {
   if (cardCounts.hasOwnProperty(cardId)) {
     // Decrement count for the clicked card
     cardCounts[cardId]--;
+    // Add the card to the user's hand
+    userHand.push(cardId);
     // Update the UI with the new count for the clicked card
     updateCount(cardId);
+    // Update the user's hand in the UI
+    updateUserHand();
     // Update the total count
     updateTotalCount();
   }
@@ -48,6 +54,37 @@ function updateTotalCount() {
   }
 }
 
+// Function to handle click on the reset button
+function handleResetClick() {
+  // Clear the user's hand
+  userHand.length = 0;
+  // Reset the card counts
+  for (const card in cardCounts) {
+    if (cardCounts.hasOwnProperty(card)) {
+      cardCounts[card] = 4;
+    }
+  }
+  // Update the UI
+  updateUserHand();
+  updateTotalCount();
+}
+
+// Function to update the user's hand in the UI
+function updateUserHand() {
+  const handElement = document.getElementById('hand');
+  if (handElement) {
+    // Clear the current hand
+    handElement.innerHTML = '';
+    // Add each card in the user's hand to the hand element
+    userHand.forEach(cardId => {
+      const cardElement = document.createElement('div');
+      cardElement.className = 'card';
+      cardElement.textContent = cardId;
+      handElement.appendChild(cardElement);
+    });
+  }
+}
+
 // Attach event listeners to each card
 const cards = document.querySelectorAll('.card');
 cards.forEach(card => {
@@ -56,6 +93,12 @@ cards.forEach(card => {
     handleCardClick(cardId);
   });
 });
+
+// Attach event listener to the reset button
+const resetButton = document.getElementById('reset');
+if (resetButton) {
+  resetButton.addEventListener('click', handleResetClick);
+}
 
 // Initial UI update
 updateTotalCount();
