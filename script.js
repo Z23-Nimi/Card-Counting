@@ -146,6 +146,7 @@ function calculateHandValue() {
 function calculateLikelihood() {
     var handValue = calculateHandValue();
     var safeCards = 0;
+    var totalCards = 0;
     for (var card in cardCounts) {
         if (cardCounts.hasOwnProperty(card)) {
             // Use the cardValues mapping to get the value of the card
@@ -153,9 +154,10 @@ function calculateLikelihood() {
             if (handValue + cardValue <= 21) {
                 safeCards += cardCounts[card];
             }
+            totalCards += cardCounts[card];
         }
     }
-    return safeCards / 52 * 100; // Convert to percentage
+    return safeCards / totalCards * 100; // Convert to percentage
 }
 // Function to update the statistics in the UI
 function updateStatistics() {
@@ -181,4 +183,5 @@ function updateStatistics() {
 }
 // Initial UI update
 updateTotalCount();
+
 
