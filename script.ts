@@ -54,8 +54,16 @@ function updateTotalCount() {
   }
 }
 
-// Function to handle click on the reset button
-function handleResetClick() {
+// Function to handle click on the reset hand button
+function handleResetHandClick() {
+  // Clear the user's hand
+  userHand.length = 0;
+  // Update the UI
+  updateUserHand();
+}
+
+// Function to handle click on the reset all button
+function handleResetAllClick() {
   // Clear the user's hand
   userHand.length = 0;
   // Reset the card counts
@@ -94,10 +102,16 @@ cards.forEach(card => {
   });
 });
 
-// Attach event listener to the reset button
-const resetButton = document.getElementById('reset');
-if (resetButton) {
-  resetButton.addEventListener('click', handleResetClick);
+// Attach event listener to the reset hand button
+const resetHandButton = document.getElementById('resetHand');
+if (resetHandButton) {
+  resetHandButton.addEventListener('click', handleResetHandClick);
+}
+
+// Attach event listener to the reset all button
+const resetAllButton = document.getElementById('resetAll');
+if (resetAllButton) {
+  resetAllButton.addEventListener('click', handleResetAllClick);
 }
 
 // Initial UI update
