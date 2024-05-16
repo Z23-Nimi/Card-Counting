@@ -172,8 +172,11 @@ function calculateLikelihood() {
       totalCards += cardCounts[card];
     }
   }
-  return safeCards / totalCards * 100;  // Convert to percentage
+  // Calculate the scaling factor based on the number of cards left in the deck
+  const scaleFactor = 52 / totalCards;
+  return (safeCards / totalCards * 100) * scaleFactor;  // Convert to percentage and apply the scaling factor
 }
+
 
 // Function to update the statistics in the UI
 function updateStatistics() {
