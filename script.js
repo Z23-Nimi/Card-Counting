@@ -13,6 +13,21 @@ var cardCounts = {
     queen: 4,
     king: 4,
 };
+var cardValues = {
+    ace: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9,
+    ten: 10,
+    jack: 10,
+    queen: 10,
+    king: 10,
+};
 var userHand = [];
 // Function to handle click on a card
 function handleCardClick(cardId) {
@@ -120,13 +135,9 @@ function calculateHandValue() {
             // Ace can be 1 or 11, choose the value that won't bust the hand
             handValue += (handValue + 11 <= 21) ? 11 : 1;
         }
-        else if (cardId === 'king' || cardId === 'queen' || cardId === 'jack') {
-            // Face cards are worth 10
-            handValue += 10;
-        }
         else {
-            // Number cards are worth their number
-            handValue += parseInt(cardId);
+            // Use the cardValues mapping to get the value of the card
+            handValue += cardValues[cardId];
         }
     });
     return handValue;
@@ -137,7 +148,8 @@ function calculateLikelihood() {
     var safeCards = 0;
     for (var card in cardCounts) {
         if (cardCounts.hasOwnProperty(card)) {
-            var cardValue = (card === 'ace') ? 1 : (card === 'king' || card === 'queen' || card === 'jack' ? 10 : parseInt(card));
+            // Use the cardValues mapping to get the value of the card
+            var cardValue = cardValues[card];
             if (handValue + cardValue <= 21) {
                 safeCards += cardCounts[card];
             }
@@ -169,3 +181,4 @@ function updateStatistics() {
 }
 // Initial UI update
 updateTotalCount();
+
