@@ -27,6 +27,7 @@ function handleCardClick(cardId) {
         updateUserHand();
         // Update the total count
         updateTotalCount();
+        updateStatistics();
     }
 }
 // Function to update the count for a specific card
@@ -55,6 +56,7 @@ function handleResetHandClick() {
     userHand.length = 0;
     // Update the UI
     updateUserHand();
+    updateStatistics();
 }
 // Function to handle click on the reset all button
 function handleResetAllClick() {
@@ -75,6 +77,7 @@ function handleResetAllClick() {
     if (cardsElement) {
         cardsElement.innerHTML = cardsElement.innerHTML;
     }
+    updateStatistics();
 }
 // Function to update the user's hand in the UI
 function updateUserHand() {
@@ -109,6 +112,57 @@ var resetAllButton = document.getElementById('resetAll');
 if (resetAllButton) {
     resetAllButton.addEventListener('click', handleResetAllClick);
 }
+// Function to calculate the value of the user's hand
+function calculateHandValue() {
+    var handValue = 0;
+    userHand.forEach(function (cardId) {
+        if (cardId === 'ace') {
+            // Ace can be 1 or 11, choose the value that won't bust the hand
+            handValue += (handValue + 11 <= 21) ? 11 : 1;
+        }
+        else if (cardId === 'king' || cardId === 'queen' || cardId === 'jack') {
+            // Face cards are worth 10
+            handValue += 10;
+        }
+        else {
+            // Number cards are worth their number
+            handValue += parseInt(cardId);
+        }
+    });
+    return handValue;
+}
+// Function to calculate the likelihood of pulling a card without busting
+function calculateLikelihood() {
+    var handValue = calculateHandValue();
+    var safeCards = 0;
+    for (var card in cardCounts) {
+        if (cardCounts.hasOwnProperty(card)) {
+            var cardValue = (card === 'ace') ? 1 : (card === 'king' || card === 'queen' || card === 'jack' ? 10 : parseInt(card));
+            if (handValue + cardValue <= 21) {
+                safeCards += cardCounts[card];
+            }
+        }
+    }
+    return safeCards / 52 * 100; // Convert to percentage
+}
+// Function to update the statistics in the UI
+function updateStatistics() {
+    var handValueElement = document.getElementById('handValue');
+    var likelihoodElement = document.getElementById('likelihood');
+    var recommendationElement = document.getElementById('recommendation');
+    var handValue = calculateHandValue();
+    var likelihood = calculateLikelihood();
+    if (handValueElement) {
+        handValueElement.textContent = "Hand Value: ".concat(handValue);
+    }
+    if (likelihoodElement) {
+        likelihoodElement.textContent = "Likelihood of Not Busting: ".concat(likelihood.toFixed(2), "%");
+    }
+    if (recommendationElement) {
+        recommendationElement.textContent = likelihood > 50 ? 'Recommendation: Take another card' : '';
+    }
+}
+// Call updateStatistics in handleCardClick, handleResetHandClick, and handleResetAllClick
 // Initial UI update
 updateTotalCount();
 
