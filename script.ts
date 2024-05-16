@@ -177,10 +177,13 @@ function updateStatistics() {
   if (recommendationElement) {
     recommendationElement.textContent = likelihood > 50 ? 'Recommendation: Take another card' : '';
   }
+
+  // Force a re-render of the statistics
+  const statisticsElement = document.getElementById('statistics');
+  if (statisticsElement) {
+    statisticsElement.innerHTML = statisticsElement.innerHTML;
+  }
 }
-
-// Call updateStatistics in handleCardClick, handleResetHandClick, and handleResetAllClick
-
 
 // Initial UI update
 updateTotalCount();
