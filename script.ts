@@ -18,7 +18,7 @@ const userHand: string[] = [];
 
 // Function to handle click on a card
 function handleCardClick(cardId: string) {
-  if (cardCounts.hasOwnProperty(cardId)) {
+  if (cardCounts.hasOwnProperty(cardId) && cardCounts[cardId] > 0) {
     // Decrement count for the clicked card
     cardCounts[cardId]--;
     // Add the card to the user's hand
@@ -31,6 +31,7 @@ function handleCardClick(cardId: string) {
     updateTotalCount();
   }
 }
+
 
 // Function to update the count for a specific card
 function updateCount(cardId: string) {
