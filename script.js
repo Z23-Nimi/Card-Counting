@@ -70,6 +70,11 @@ function handleResetAllClick() {
     // Update the UI
     updateUserHand();
     updateTotalCount();
+    // Force a re-render of the cards
+    var cardsElement = document.querySelector('.cards');
+    if (cardsElement) {
+        cardsElement.innerHTML = cardsElement.innerHTML;
+    }
 }
 // Function to update the user's hand in the UI
 function updateUserHand() {
