@@ -60,10 +60,11 @@ function handleResetHandClick() {
 function handleResetAllClick() {
     // Clear the user's hand
     userHand.length = 0;
-    // Reset the card counts
+    // Reset the card counts and update the count in the UI for each card
     for (var card in cardCounts) {
         if (cardCounts.hasOwnProperty(card)) {
             cardCounts[card] = 4;
+            updateCount(card);
         }
     }
     // Update the UI
