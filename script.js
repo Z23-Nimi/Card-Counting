@@ -16,7 +16,7 @@ var cardCounts = {
 var userHand = [];
 // Function to handle click on a card
 function handleCardClick(cardId) {
-    if (cardCounts.hasOwnProperty(cardId)) {
+    if (cardCounts.hasOwnProperty(cardId) && cardCounts[cardId] > 0) {
         // Decrement count for the clicked card
         cardCounts[cardId]--;
         // Add the card to the user's hand
@@ -111,3 +111,4 @@ if (resetAllButton) {
 }
 // Initial UI update
 updateTotalCount();
+
