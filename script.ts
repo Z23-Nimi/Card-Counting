@@ -159,6 +159,11 @@ function calculateHandValue() {
 
 // Function to calculate the likelihood of pulling a card without busting
 function calculateLikelihood() {
+  if (userHand.length === 0) {
+    // If the hand is empty, the likelihood of not busting is 100%
+    return 100;
+  }
+
   const handValue = calculateHandValue();
   let safeCards = 0;
   let totalCards = 0;
@@ -174,8 +179,16 @@ function calculateLikelihood() {
   }
   // Calculate the scaling factor based on the number of cards left in the deck
   const scaleFactor = 52 / totalCards;
-  return (safeCards / totalCards * 100) * scaleFactor;  // Convert to percentage and apply the scaling factor
+  let likelihood = (safeCards / totalCards * 100) * scaleFactor;  // Convert to percentage and apply the scaling factor
+
+  // Ensure the likelihood does not exceed 100%
+  if (likelihood > 100) {
+    likelihood = 100;
+  }
+
+  return likelihood;
 }
+
 
 
 // Function to update the statistics in the UI
