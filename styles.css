@@ -3,9 +3,6 @@ body {
   font-family: Arial, sans-serif;
   padding: 20px;
   color: #333;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
 }
 
 h2 {
@@ -14,15 +11,13 @@ h2 {
 
 .card {
   display: inline-block;
-  margin: 10px;
-  padding: 10px;
+  margin: 20px;
+  padding: 20px;
   border: 1px solid #ddd;
   border-radius: 10px;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
   text-align: center;
   transition: all 0.3s ease;
-  flex: 1 0 21%;  /* Grow and shrink, basis */
-  margin: 1%;
 }
 
 .card:hover {
@@ -30,8 +25,8 @@ h2 {
 }
 
 .card img {
-  width: 60px;  /* adjust this to make the cards smaller or larger */
-  height: auto;  /* this will maintain the aspect ratio */
+  width: 100px;
+  height: auto;
   margin-bottom: 10px;
 }
 
