@@ -1,6 +1,7 @@
   <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Card Counting Test</title>
@@ -10,7 +11,12 @@
       margin-right: 20px;
       padding: 10px;
       border: 1px solid #000;
+      text-align: center;
       cursor: pointer;
+    }
+    .card img {
+      width: 100px;
+      height: auto;
     }
     .count {
       margin-top: 5px;
@@ -19,60 +25,59 @@
 </head>
 <body>
   <div class="card" id="ace">
-    <p>Ace</p>
+    <img src = "utils/ace.png" alt = "Ace">
     <p class="count">Count: 4</p>
   </div>
   <div class="card" id="two">
-    <p>Two</p>
+    <img src = "utils/two.png" alt = "Two">
     <p class="count">Count: 4</p>
   </div>
   <div class="card" id="three">
-    <p>Three</p>
+    <img src = "utils/three.png" alt = "Three">
     <p class="count">Count: 4</p>
   </div>
   <div class="card" id="four">
-    <p>Four</p>
+    <img src = "utils/four.png" alt = "Four">
     <p class="count">Count: 4</p>
   </div>
   <div class="card" id="five">
-    <p>Five</p>
+    <img src = "utils/five.png" alt = "Five">
     <p class="count">Count: 4</p>
   </div>
   <div class="card" id="six">
-    <p>Six</p>
+    <img src = "utils/six.png" alt = "Six">
     <p class="count">Count: 4</p>
   </div>
   <div class="card" id="seven">
-    <p>Seven</p>
+    <img src = "utils/seven.png" alt = "Seven">
     <p class="count">Count: 4</p>
   </div>
   <div class="card" id="eight">
-    <p>Eight</p>
+    <img src = "utils/eight.png" alt = "Eight">
     <p class="count">Count: 4</p>
   </div>
   <div class="card" id="nine">
-    <p>Nine</p>
+    <img src = "utils/nine.png" alt = "Nine">
     <p class="count">Count: 4</p>
   </div>
   <div class="card" id="ten">
-    <p>Ten</p>
+    <img src = "utils/ten.png" alt = "Ten">
     <p class="count">Count: 4</p>
   </div>
   <div class="card" id="jack">
-    <p>Jack</p>
+    <img src = "utils/jack.png" alt = "Jack">
     <p class="count">Count: 4</p>
   </div>
   <div class="card" id="queen">
-    <p>Queen</p>
+    <img src = "utils/queen.png" alt = "Queen">
     <p class="count">Count: 4</p>
   </div>
   <div class="card" id="king">
-    <p>King</p>
+    <img src = "utils/king.png" alt = "King">
     <p class="count">Count: 4</p>
   </div>
 
 <div class="hand" id="hand">
-    <h2>Your Hand</h2>
     <!-- Cards will be dynamically added here... -->
   </div>
 
@@ -89,6 +94,15 @@
   <p id="likelihood">Likelihood of Not Busting: 0%</p>
   <p id="recommendation"></p>
 </div>
+
+  <div id="instructions">
+  <h2>Instructions</h2>
+  <p>1. Click on a card to add it to your hand. The count of the card will decrease by 1.</p>
+  <p>2. The value of your hand and the likelihood of drawing a card without busting will be updated automatically.</p>
+  <p>3. If the likelihood of not busting is higher than 50%, a recommendation to take another card will be displayed.</p>
+  <p>4. You can reset your hand or reset all cards back to their original counts using the reset buttons.</p>
+</div>
+
 
 
   <script src="script.js"></script>
