@@ -30,8 +30,8 @@ h2 {
 }
 
 .card img {
-  width: 100px;
-  height: auto;
+  width: 60px;  /* adjust this to make the cards smaller or larger */
+  height: auto;  /* this will maintain the aspect ratio */
   margin-bottom: 10px;
 }
 
