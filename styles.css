@@ -1,5 +1,5 @@
 body {
-  background-color: #f4f4f4;
+  background-color: #000000;
   font-family: Arial, sans-serif;
   padding: 20px;
   color: #333;
@@ -38,7 +38,7 @@ h2 {
 #statistics {
   margin-top: 40px;
   padding: 20px;
-  background-color: #fff;
+  background-color: #3A3B3C;
   border-radius: 10px;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
 }
@@ -66,7 +66,7 @@ button:hover {
 #instructions {
   margin-top: 40px;
   padding: 20px;
-  background-color: #fff;
+  background-color: #3A3B3C;
   border-radius: 10px;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
 }
