@@ -26,6 +26,7 @@ To run this project, simply open the link https://z23-nimi.github.io/Card-Counti
 
 Aces: Aces will be correctly valued when drawn, but will not change value afterward, resulting in innaccuracies when an ace should be
 measured as a one instead of the eleven it was originally.
+
 Stat Discrepancy: Occasionally, for currently unknown factors, a 100% chance of not busting will be displayed when there are still cases
 in which another drawn card can bust the hand.
 
